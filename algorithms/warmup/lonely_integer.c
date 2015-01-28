@@ -1,12 +1,16 @@
 #include <stdio.h>
 
 int lonely(int n, int *a) {
-  for(int i = 0; i < n - 1; i += 2) {
-    if(a[i] != a[i + 1]) {
-      return a[i + (a[i + 1] == a[i + 2] ? 0 : 1)];
+  int occurences[101] = {0};
+  for(int i = 0; i < n; ++i) {
+    ++occurences[a[i]];
+  }
+  for(int i = 0; i < 101; ++i) {
+    if(occurences[i] == 1) {
+      return i;
     }
   }
-  return a[n - 1];
+  return 0;
 }
 
 int main(int argc, char **argv) {
